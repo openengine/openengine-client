@@ -6,16 +6,16 @@
    See browserify.bundleConfigs in gulp/config.js
 */
 
-var browserify   = require('browserify');
-var watchify     = require('watchify');
+var gulp = require('gulp');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var watchify = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
-var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
-var source       = require('vinyl-source-stream');
-var config       = require('../config').browserify;
+var source = require('vinyl-source-stream');
+var config = require('../config').browserify;
 
 gulp.task('browserify', function(callback) {
-
   var bundleQueue = config.bundleConfigs.length;
 
   var browserifyThis = function(bundleConfig) {
@@ -36,6 +36,7 @@ gulp.task('browserify', function(callback) {
       bundleLogger.start(bundleConfig.outputName);
 
       return bundler
+        .transform(babelify)
         .bundle()
         // Report compile errors
         .on('error', handleErrors)
