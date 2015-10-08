@@ -1,7 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 (function () {
-  //import React from 'react';
-  var React = require('react');
-  var ReactDOM = require('react-dom');
   var injectTapEventPlugin = require("react-tap-event-plugin");
   var Main = require('./components/main.jsx');
 
@@ -14,7 +14,5 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  // Render the main app react component into the document body.
-  // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
   ReactDOM.render(<Main />, document.getElementById('main'));
 })();
