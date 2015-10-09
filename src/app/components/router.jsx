@@ -5,14 +5,14 @@ const history = createHistory();
 
 const Main = require('./main.jsx');
 const Home = require('./home.jsx');
-const About = require('./about.jsx');
+const Board = require('./board.jsx');
 const NoMatch = require('./no_match.jsx');
 
 function AppRouter(props) {
   return (
     <Router history={history}>
       <Route path="/" component={Main}>
-        <Route path="about" component={About} />
+        <Route path="board" component={Board} />
         <Route path="*" component={NoMatch}/>
       </Route>
     </Router>
