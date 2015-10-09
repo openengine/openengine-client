@@ -1,10 +1,14 @@
-var dest = './build';
-var src = './src';
+const dest = './build';
+const src = './src';
+
+//https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-60410751
+const historyApiFallback = require('connect-history-api-fallback');
 
 module.exports = {
   browserSync: {
     server: {
-      baseDir: [dest, src]
+      baseDir: [dest, src],
+      middleware: [historyApiFallback()]
     },
     files: [
       dest + '/**'
