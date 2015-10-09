@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-function Navigation(props) {
+export default function Navigation(props) {
   return (
     <div className="navbar navbar-inverse navbar-fixed-top">
       <Link className="navbar-brand" to="/">{props.projectName}</Link>
@@ -10,5 +10,3 @@ function Navigation(props) {
     </div>
   );
 }
-
-export default Navigation;

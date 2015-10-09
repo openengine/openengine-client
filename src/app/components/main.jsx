@@ -1,7 +1,7 @@
 const Navigation = require('./navigation.jsx');
 const Home = require('./home.jsx');
 
-function Main(props) {
+export default function Main(props) {
   return (
     <div>
       <Navigation projectName="Engine" />
@@ -9,5 +9,3 @@ function Main(props) {
     </div>
   );
 }
-
-export default Main;

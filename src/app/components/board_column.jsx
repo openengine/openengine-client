@@ -5,7 +5,7 @@ const boardColumnStyle = {
   backgroundColor: '#999'
 };
 
-function BoardColumn(props) {
+export default function BoardColumn(props) {
   return (
     <div style={boardColumnStyle} className="board-column-component col-md-4">
       <h3>BoardColumn Title</h3>
@@ -15,5 +15,3 @@ function BoardColumn(props) {
     </div>
   );
 }
-
-export default BoardColumn;

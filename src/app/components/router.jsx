@@ -4,11 +4,10 @@ import { createHistory, useBasename } from 'history'
 const history = createHistory();
 
 const Main = require('./main.jsx');
-const Home = require('./home.jsx');
 const Board = require('./board.jsx');
 const NoMatch = require('./no_match.jsx');
 
-function AppRouter(props) {
+export default function AppRouter(props) {
   return (
     <Router history={history}>
       <Route path="/" component={Main}>
@@ -18,5 +17,3 @@ function AppRouter(props) {
     </Router>
   );
 }
-
-export default AppRouter;

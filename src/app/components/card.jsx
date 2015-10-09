@@ -3,7 +3,7 @@ const cardStyle = {
   backgroundColor: '#fff'
 };
 
-function Card(props) {
+export default function Card(props) {
   return (
     <div style={cardStyle} className="card-component container-fluid">
       <div className="row-fluid">
@@ -14,5 +14,3 @@ function Card(props) {
     </div>
   );
 }
-
-export default Card;

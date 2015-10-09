@@ -1,7 +1,5 @@
-function NoMatch(props) {
+export default function NoMatch(props) {
   return (
     <h1>404</h1>
   );
 }
-
-export default NoMatch;
