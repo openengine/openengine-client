@@ -1,14 +1,14 @@
+import { Link } from 'react-router'
+
 function Navigation(props) {
   return (
     <div className="navbar navbar-inverse navbar-fixed-top">
-      <a className="navbar-brand" href="#">{props.projectName}</a>
+      <Link className="navbar-brand" to="/">{props.projectName}</Link>
       <ul className="nav navbar-nav">
-        <li className="active" eventKey={1} href="#home">Home</li>
-        <li eventKey={2} href="#about">About</li>
-        <li eventKey={2} href="#about">Contact</li>
+        <li><Link to="/about">About</Link></li>
       </ul>
     </div>
   );
 }
 
-module.exports = Navigation;
+export default Navigation;

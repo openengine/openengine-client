@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 (function () {
   const injectTapEventPlugin = require("react-tap-event-plugin");
-  const Main = require('./components/main.jsx');
+  const Router = require('./components/router.jsx');
 
   //Needed for React Developer Tools
   window.React = React;
@@ -14,5 +14,5 @@ import ReactDOM from 'react-dom';
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  ReactDOM.render(<Main />, document.getElementById('main'));
+  ReactDOM.render(<Router />, document.getElementById('main'));
 })();
