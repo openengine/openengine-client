@@ -1,4 +1,4 @@
-var Navigation = require('./navigation.jsx');
+const Navigation = require('./navigation.jsx');
 
 function Main(props) {
   return (
