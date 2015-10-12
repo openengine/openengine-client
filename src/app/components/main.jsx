@@ -1,7 +1,9 @@
-const Navigation = require('./navigation.jsx');
-const Home = require('./home.jsx');
+import Relay from 'react-relay';
 
-export default function Main(props) {
+import Navigation from './navigation.jsx';
+import Home from './home.jsx';
+
+let Main = (props) => {
   return (
     <div>
       <Navigation projectName="Engine" />
@@ -9,3 +11,14 @@ export default function Main(props) {
     </div>
   );
 }
+
+export default Relay.createContainer(Main, {
+  fragments: {
+    board: () => Relay.QL`
+      fragment on Board {
+        id
+        name
+      }
+    `,
+  },
+});

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-(function () {
-  const injectTapEventPlugin = require("react-tap-event-plugin");
-  const Router = require('./components/router.jsx');
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Router from './components/router.jsx';
 
+(function () {
   //Needed for React Developer Tools
   window.React = React;
 
