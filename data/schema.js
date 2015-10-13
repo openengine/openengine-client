@@ -23,6 +23,7 @@ import {
 import {
   Board,
   getBoard,
+  getBoards,
 } from './database';
 
 let {nodeInterface, nodeField} = nodeDefinitions(
@@ -66,6 +67,10 @@ var queryType = new GraphQLObjectType({
     board: {
       type: boardType,
       resolve: () => getBoard()
+    },
+    boards: {
+      type: [boardType],
+      resolve: () => getBoards()
     }
   }),
 });

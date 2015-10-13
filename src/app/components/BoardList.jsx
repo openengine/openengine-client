@@ -1,14 +1,14 @@
 import Relay from 'react-relay';
 
-let Home = (props) => {
+let BoardList = (props) => {
   return (
     <div className="container">
-      <h1>Home</h1>
+      <h1>BoardList</h1>
     </div>
   );
 }
 
-export default Relay.createContainer(Home, {
+export default Relay.createContainer(BoardList, {
   fragments: {
     board: () => Relay.QL`
       fragment on Board {

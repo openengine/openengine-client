@@ -33,6 +33,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
+    "react-router-relay": "relay-tools/react-router-relay",
     "react-tap-event-plugin": "^0.1.3",
     "require-dir": "^0.1.0",
     "underscore": "^1.7.0",

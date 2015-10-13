@@ -1,18 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route } from 'react-router';
+import { createHistory } from 'history';
+import ReactRouterRelay from 'react-router-relay';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import Router from './components/router.jsx';
+const Main = require('./components/main.jsx');
+const BoardList = require('./components/BoardList.jsx');
+const Board = require('./components/board.jsx');
+const NoMatch = require('./components/no_match.jsx');
 
-(function () {
-  //Needed for React Developer Tools
-  window.React = React;
+import AppRelayRoute from './relays/app_relay_route.js';
 
-  //Needed for onTouchTap
-  //Can go away when react 1.0 release
-  //Check this repo:
-  //https://github.com/zilverline/react-tap-event-plugin
-  injectTapEventPlugin();
-
-  ReactDOM.render(<Router />, document.getElementById('main'));
-})();
+ReactDOM.render(
+  <Router
+    history={createHistory()}
+    createElement={ReactRouterRelay.createElement}
+  >
+    <Route path="/" component={Main}>
+      <IndexRoute component={BoardList} queries={AppRelayRoute} />
+      <Route path="*" component={NoMatch}/>
+    </Route>
+  </Router>,
+  document.getElementById('root')
+);
