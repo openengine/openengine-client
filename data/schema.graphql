@@ -1,38 +1,60 @@
-input CheckHidingSpotForTreasureInput {
-  id: ID!
+input AddBoardInput {
+  text: String!
   clientMutationId: String!
 }
 
-type CheckHidingSpotForTreasurePayload {
-  hidingSpot: HidingSpot
-  game: Game
+type AddBoardPayload {
+  viewer: User
+  boardEdge: BoardEdge
   clientMutationId: String!
 }
 
-type Game implements Node {
+type Board implements Node {
   id: ID!
-  hidingSpots(before: String, after: String, first: Int, last: Int): HidingSpotConnection
-  turnsRemaining: Int
+  text: String
+  complete: Boolean
 }
 
-type HidingSpot implements Node {
-  id: ID!
-  hasBeenChecked: Boolean
-  hasTreasure: Boolean
-}
-
-type HidingSpotConnection {
+type BoardConnection {
   pageInfo: PageInfo!
-  edges: [HidingSpotEdge]
+  edges: [BoardEdge]
 }
 
-type HidingSpotEdge {
-  node: HidingSpot
+type BoardEdge {
+  node: Board
   cursor: String!
 }
 
+input ChangeBoardStatusInput {
+  id: ID!
+  complete: Boolean!
+  clientMutationId: String!
+}
+
+type ChangeBoardStatusPayload {
+  viewer: User
+  board: Board
+  clientMutationId: String!
+}
+
+input MarkAllBoardsInput {
+  complete: Boolean!
+  clientMutationId: String!
+}
+
+type MarkAllBoardsPayload {
+  viewer: User
+  changedBoards: [Board]
+  clientMutationId: String!
+}
+
 type Mutation {
-  checkHidingSpotForTreasure(input: CheckHidingSpotForTreasureInput!): CheckHidingSpotForTreasurePayload
+  addBoard(input: AddBoardInput!): AddBoardPayload
+  changeBoardStatus(input: ChangeBoardStatusInput!): ChangeBoardStatusPayload
+  markAllBoards(input: MarkAllBoardsInput!): MarkAllBoardsPayload
+  removeCompletedBoards(input: RemoveCompletedBoardsInput!): RemoveCompletedBoardsPayload
+  removeBoard(input: RemoveBoardInput!): RemoveBoardPayload
+  renameBoard(input: RenameBoardInput!): RenameBoardPayload
 }
 
 interface Node {
@@ -46,7 +68,46 @@ type PageInfo {
   endCursor: String
 }
 
-type Query {
+input RemoveBoardInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type RemoveBoardPayload {
+  viewer: User
+  deletedId: ID
+  clientMutationId: String!
+}
+
+input RemoveCompletedBoardsInput {
+  clientMutationId: String!
+}
+
+type RemoveCompletedBoardsPayload {
+  viewer: User
+  deletedIds: [String]
+  clientMutationId: String!
+}
+
+input RenameBoardInput {
+  id: ID!
+  text: String!
+  clientMutationId: String!
+}
+
+type RenameBoardPayload {
+  board: Board
+  clientMutationId: String!
+}
+
+type Root {
+  viewer: User
   node(id: ID!): Node
-  game: Game
+}
+
+type User implements Node {
+  id: ID!
+  boards(status: String = "any", before: String, after: String, first: Int, last: Int): BoardConnection
+  numBoards: Int
+  numCompletedBoards: Int
 }

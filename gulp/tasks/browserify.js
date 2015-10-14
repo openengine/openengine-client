@@ -14,6 +14,7 @@ var bundleLogger = require('../util/bundleLogger');
 var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
+var babelRelayPlugin = require('../../tools/babelRelayPlugin');
 
 gulp.task('browserify', function(callback) {
   var bundleQueue = config.bundleConfigs.length;
@@ -36,7 +37,9 @@ gulp.task('browserify', function(callback) {
       bundleLogger.start(bundleConfig.outputName);
 
       return bundler
-        .transform(babelify)
+        .transform(babelify.configure({
+          plugins: [babelRelayPlugin]
+        }))
         .bundle()
         // Report compile errors
         .on('error', handleErrors)

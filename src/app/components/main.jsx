@@ -1,4 +1,5 @@
-import Navigation from './navigation.jsx';
+import Relay from 'react-relay';
+import Navigation from './Navigation.jsx';
 
 let Main = (props) => {
   return (
@@ -8,3 +9,13 @@ let Main = (props) => {
     </div>
   );
 }
+
+export default Relay.createContainer(Main, {
+  fragments: {
+    viewer: () => Relay.QL`
+      fragment on User {
+        id
+      }
+    `,
+  },
+});
